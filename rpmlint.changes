@@ -1,0 +1,54 @@
+* Sun May 15 2011 Anas Nashif <anas.nashif@intel.com> - 1.2
+- Update to 1.2
+
+* Sat May 14 2011 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Do not error on pkgconfig files in main package
+
+* Sat May 14 2011 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Do not error on pkgconfig files in main package
+
+* Mon Jun 07 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Fixed python error in some packages instroduced by incomplete
+  patch (bmc #1486)
+
+* Wed Mar 24 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- moblin -> MeeGo changes
+
+* Sun Mar 14 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Consider packages in the groups Development/* as devel packages
+
+* Wed Mar 03 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Import missing module os
+
+* Sat Feb 27 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Dont complain about /etc/sysconfig
+
+* Thu Feb 11 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Disable LibraryPolicyCheck
+
+* Thu Feb 11 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Treat support as examples in %docdir
+
+* Fri Jan 01 2010 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Do not check for desktop file translations yet
+
+* Mon Dec 14 2009 Anas Nashif <anas.nashif@intel.com> - 0.92
+- Update to 0.92 and add some checks from opensuse
+
+* Mon Oct 05 2009 Anas Nashif <anas.nashif@intel.com> - 0.91
+- Update to 0.91
+
+* Tue Apr 07 2009 Anas Nashif <anas.nashif@intel.com> 0.85
+- Add Intel Proprietary license
+
+* Fri Jan 09 2009 Anas Nashif <anas.nashif@intel.com> 0.85
+- disable bz2 check
+
+* Sat Dec 13 2008 Anas Nashif <anas.nashif@intel.com> 0.85
+- Consider compat packages as devel packages
+
+* Tue Nov 25 2008 Anas Nashif <anas.nashif@intel.com> 0.84
+- initial import into moblin
+
+* Tue Nov 25 2008 Anas Nashif <anas.nashif@intel.com> 0.84
+- initial import into moblin

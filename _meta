@@ -1,0 +1,9 @@
+<package project="Mer:Trunk:Base" name="rpmlint">
+  <title>Tool for checking common errors in RPM packages</title>
+  <description>rpmlint is a tool for checking common errors in RPM packages.  Binary
+and source packages as well as spec files can be checked.
+
+
+</description>
+  <url>http://rpmlint.zarb.org/</url>
+</package>
