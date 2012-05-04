@@ -1,3 +1,7 @@
+* Fri May 04 2012 Marko Saukko <sage@merproject.org> - 1.4
+- Fixes MER#148: update rpmlint to version 1.4
+- Dropped non applied patch confusing-invalid-spec-name.patch
+
 * Sun May 15 2011 Anas Nashif <anas.nashif@intel.com> - 1.2
 - Update to 1.2
 

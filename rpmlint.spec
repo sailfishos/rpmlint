@@ -3,8 +3,8 @@
 Name:           rpmlint
 BuildRequires:  rpm-python
 Summary:        Rpm correctness checker
-Version:        1.2
-Release:        31
+Version:        1.4
+Release:        1
 Source0:        %{name}-%{version}.tar.xz
 Source1:        config
 Source1001:     config.in
@@ -33,7 +33,6 @@ Requires:       rpm-python, /usr/bin/readelf, file, findutils, cpio, bash
 Requires:       desktop-file-utils
 Requires:       python-magic
 BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Patch0:         meego.patch
 
 %description
@@ -74,16 +73,13 @@ head -n 8 $RPM_BUILD_ROOT/usr/share/rpmlint/config > $RPM_BUILD_ROOT/etc/rpmlint
 python -tt %{SOURCE100} $RPM_BUILD_ROOT/usr/share/rpmlint/*.py $RPM_BUILD_ROOT/usr/share/rpmlint/config
 %__install -m 644 %{SOURCE20} %{buildroot}/%{_sysconfdir}/rpmlint/
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,0755)
 %doc COPYING ChangeLog INSTALL README*
-%{_prefix}/bin/*
-%{_prefix}/share/rpmlint
+%{_bindir}/*
+%{_datadir}/rpmlint
 %config(noreplace) /etc/rpmlint/config
 %config %{_sysconfdir}/rpmlint/rpmgroups.config
 %dir /etc/rpmlint
-/usr/share/man/man1/rpmlint.1.gz
+%{_datadir}/man/man1/rpmlint.1.gz
 
