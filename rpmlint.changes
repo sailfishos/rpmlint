@@ -1,3 +1,7 @@
+* Sat Dec 14 2013 Davide Bettio <davide.bettio@ispirata.com> - 1.4
+- Fixes https://bugzilla.redhat.com/show_bug.cgi?id=783912 :
+  added rpmlint-1.4-encoding.patch patch.
+
 * Fri May 04 2012 Marko Saukko <sage@merproject.org> - 1.4
 - Fixes MER#148: update rpmlint to version 1.4
 - Dropped non applied patch confusing-invalid-spec-name.patch

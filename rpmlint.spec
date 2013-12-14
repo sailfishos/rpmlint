@@ -34,6 +34,7 @@ Requires:       desktop-file-utils
 Requires:       python-magic
 BuildArch:      noarch
 Patch0:         meego.patch
+Patch1:         rpmlint-1.4-encoding.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and
@@ -42,6 +43,7 @@ source packages can be checked.
 %prep
 %setup -q -n rpmlint-%{version}
 %patch0 -p1
+%patch1 -p1 -b .enc
 cp -p %{SOURCE1} .
 cp -p %{SOURCE2} .
 cp -p %{SOURCE3} .
