@@ -41,7 +41,7 @@ Rpmlint is a tool to check common errors on rpm packages. Binary and
 source packages can be checked.
 
 %prep
-%setup -q -n rpmlint-%{version}
+%setup -q -n %{name}-%{version}/upstream
 %patch0 -p1
 %patch1 -p1 -b .enc
 cp -p %{SOURCE1} .
@@ -77,7 +77,7 @@ python -tt %{SOURCE100} $RPM_BUILD_ROOT/usr/share/rpmlint/*.py $RPM_BUILD_ROOT/u
 
 %files
 %defattr(-,root,root,0755)
-%doc COPYING ChangeLog INSTALL README*
+%doc COPYING INSTALL README*
 %{_bindir}/*
 %{_datadir}/rpmlint
 %config(noreplace) /etc/rpmlint/config
