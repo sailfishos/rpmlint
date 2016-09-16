@@ -3,7 +3,7 @@
 Name:           rpmlint
 BuildRequires:  rpm-python
 Summary:        Rpm correctness checker
-Version:        1.4
+Version:        1.9
 Release:        1
 Source0:        %{name}-%{version}.tar.xz
 Source1:        config
@@ -69,6 +69,7 @@ make %{?_smp_mflags}
 make install DESTDIR=$RPM_BUILD_ROOT
 # the provided bash-completion does not work and only prints bash errors
 rm -rf  $RPM_BUILD_ROOT/etc/bash_completion.d
+rm -rf  $RPM_BUILD_ROOT/%{_datadir}/man
 mv $RPM_BUILD_ROOT/etc/rpmlint/config $RPM_BUILD_ROOT/usr/share/rpmlint/config
 head -n 8 $RPM_BUILD_ROOT/usr/share/rpmlint/config > $RPM_BUILD_ROOT/etc/rpmlint/config
 # make sure that the package is sane
@@ -83,5 +84,3 @@ python -tt %{SOURCE100} $RPM_BUILD_ROOT/usr/share/rpmlint/*.py $RPM_BUILD_ROOT/u
 %config(noreplace) /etc/rpmlint/config
 %config %{_sysconfdir}/rpmlint/rpmgroups.config
 %dir /etc/rpmlint
-%{_datadir}/man/man1/rpmlint.1.gz
-
