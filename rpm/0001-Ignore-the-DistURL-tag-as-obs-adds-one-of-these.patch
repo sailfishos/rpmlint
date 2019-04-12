@@ -1,0 +1,26 @@
+From 02d7da4ea40e6fbe6c1289573dac16e522c80139 Mon Sep 17 00:00:00 2001
+From: David Greaves <david@dgreaves.com>
+Date: Fri, 12 Apr 2019 11:10:28 +0100
+Subject: [PATCH] Ignore the DistURL tag as obs adds one of these
+
+Signed-off-by: David Greaves <david.greaves@jolla.com>
+---
+ TagsCheck.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/TagsCheck.py b/TagsCheck.py
+index 4e32520..c6e3061 100644
+--- a/TagsCheck.py
++++ b/TagsCheck.py
+@@ -803,7 +803,7 @@ class TagsCheck(AbstractCheck.AbstractCheck):
+             if not valid_license:
+                 self._unexpanded_macros(pkg, 'License', rpm_license)
+ 
+-        for tag in ('URL', 'DistURL', 'BugURL'):
++        for tag in ('URL', 'BugURL'):
+             if hasattr(rpm, 'RPMTAG_%s' % tag.upper()):
+                 url = Pkg.b2s(pkg[getattr(rpm, 'RPMTAG_%s' % tag.upper())])
+                 self._unexpanded_macros(pkg, tag, url, is_url=True)
+-- 
+2.11.0
+
