@@ -3,7 +3,7 @@
 Name:           rpmlint
 BuildRequires:  rpm-python
 Summary:        Rpm correctness checker
-Version:        1.9
+Version:        1.11
 Release:        1
 Source0:        %{name}-%{version}.tar.xz
 Source1:        config
@@ -33,7 +33,7 @@ Requires:       rpm-python, /usr/bin/readelf, file, findutils, cpio, bash
 Requires:       desktop-file-utils
 Requires:       python-magic
 BuildArch:      noarch
-Patch0:         meego.patch
+Patch0:         0001-Ignore-the-DistURL-tag-as-obs-adds-one-of-these.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and
@@ -66,7 +66,7 @@ make %{?_smp_mflags}
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 # the provided bash-completion does not work and only prints bash errors
-rm -rf  $RPM_BUILD_ROOT/etc/bash_completion.d
+#rm -rf  $RPM_BUILD_ROOT/etc/bash_completion.d
 rm -rf  $RPM_BUILD_ROOT/%{_datadir}/man
 mv $RPM_BUILD_ROOT/etc/rpmlint/config $RPM_BUILD_ROOT/usr/share/rpmlint/config
 head -n 8 $RPM_BUILD_ROOT/usr/share/rpmlint/config > $RPM_BUILD_ROOT/etc/rpmlint/config
@@ -79,6 +79,7 @@ python -tt %{SOURCE100} $RPM_BUILD_ROOT/usr/share/rpmlint/*.py $RPM_BUILD_ROOT/u
 %doc COPYING INSTALL README*
 %{_bindir}/*
 %{_datadir}/rpmlint
-%config(noreplace) /etc/rpmlint/config
+%config(noreplace) %{_sysconfdir}/rpmlint/config
 %config %{_sysconfdir}/rpmlint/rpmgroups.config
 %dir /etc/rpmlint
+%{_sysconfdir}/bash_completion.d/rpmlint
