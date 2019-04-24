@@ -33,7 +33,10 @@ Requires:       rpm-python, /usr/bin/readelf, file, findutils, cpio, bash
 Requires:       desktop-file-utils
 Requires:       python-magic
 BuildArch:      noarch
+# Apply patches to upstream and then in ./upstream use:
+#  git format-patch --base=<upstream-tag> <upstream-tag>..<sfos/tag> -o ../rpm/
 Patch0:         0001-Ignore-the-DistURL-tag-as-obs-adds-one-of-these.patch
+Patch1:         0002-ZipCheck-Also-ignore-RuntimeError.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and
@@ -42,6 +45,7 @@ source packages can be checked.
 %prep
 %setup -q -n %{name}-%{version}/upstream
 %patch0 -p1
+%patch1 -p1
 cp -p %{SOURCE1} .
 cp -p %{SOURCE2} .
 cp -p %{SOURCE3} .
