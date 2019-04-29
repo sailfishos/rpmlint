@@ -1,7 +1,7 @@
 From f04ccd0dcd81e2319c074098605a0e05b15d9818 Mon Sep 17 00:00:00 2001
 From: Dirk Mueller <dirk@dmllr.de>
 Date: Sat, 2 Feb 2019 09:19:45 +0100
-Subject: [PATCH 2/2] ZipCheck: Also ignore RuntimeError
+Subject: [PATCH 2/3] ZipCheck: Also ignore RuntimeError
 
 When there is a unpack error, we need to catch it. Potential
 reasons are : NotImplementedError (which happens on compression
