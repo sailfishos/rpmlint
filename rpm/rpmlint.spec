@@ -37,7 +37,7 @@ BuildArch:      noarch
 #  git format-patch --base=<upstream-tag> <upstream-tag>..<sfos/tag> -o ../rpm/
 Patch0:         0001-Ignore-the-DistURL-tag-as-obs-adds-one-of-these.patch
 Patch1:         0002-ZipCheck-Also-ignore-RuntimeError.patch
-Patch2:         0003-ZipCheck-Ignore-IOError.patch
+Patch2:         0003-ZipCheck-Ignore-IOError-and-zlib.error.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and
