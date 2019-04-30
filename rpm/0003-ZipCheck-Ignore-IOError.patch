@@ -1,0 +1,28 @@
+From d683fedad030d4bc3dc88d49cd2f86e92a85c46d Mon Sep 17 00:00:00 2001
+From: David Greaves <david@dgreaves.com>
+Date: Mon, 29 Apr 2019 19:09:47 +0100
+Subject: [PATCH 3/3] ZipCheck: Ignore IOError
+
+This can occur when opening a file which is not actually a zip archive
+
+Signed-off-by: David Greaves <david.greaves@jolla.com>
+---
+ ZipCheck.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ZipCheck.py b/ZipCheck.py
+index 4da6b06..034fe95 100644
+--- a/ZipCheck.py
++++ b/ZipCheck.py
+@@ -43,7 +43,7 @@ class ZipCheck(AbstractCheck.AbstractCheck):
+                     badcrc = z.testzip()
+                     if badcrc:
+                         printError(pkg, 'bad-crc-in-zip', badcrc, fname)
+-                except (RuntimeError, zipfile.error):
++                except (IOError, RuntimeError, zipfile.error):
+                     printWarning(pkg, 'unable-to-read-zip', '%s: %s' %
+                                  (fname, sys.exc_info()[1]))
+                 else:
+-- 
+2.11.0
+
