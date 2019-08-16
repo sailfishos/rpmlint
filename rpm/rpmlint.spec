@@ -83,7 +83,7 @@ python -tt %{SOURCE100} $RPM_BUILD_ROOT/usr/share/rpmlint/*.py $RPM_BUILD_ROOT/u
 %doc COPYING INSTALL README*
 %{_bindir}/*
 %{_datadir}/rpmlint
-%config(noreplace) %{_sysconfdir}/rpmlint/config
+%config %{_sysconfdir}/rpmlint/config
 %config %{_sysconfdir}/rpmlint/rpmgroups.config
 %dir /etc/rpmlint
 %{_sysconfdir}/bash_completion.d/rpmlint
