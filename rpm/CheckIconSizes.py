@@ -10,7 +10,7 @@ from Filter import *
 import AbstractCheck
 import rpm
 import re
-import commands
+import subprocess
 import stat
 import Config
 import os
@@ -27,7 +27,7 @@ class IconSizesCheck(AbstractCheck.AbstractCheck):
         if pkg.isSource():
             return
 
-        for fname, pkgfile in pkg.files().items():
+        for fname, pkgfile in list(pkg.files().items()):
             res = self.file_size_regex.search(fname)
             if res:
                 sizes = (res.group(1), res.group(2))

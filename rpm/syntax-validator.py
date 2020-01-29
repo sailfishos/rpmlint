@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # vim:sw=4:et
 
 import sys
@@ -6,6 +6,6 @@ import sys
 for filename in sys.argv[1:]:
     try:
         compile(open(filename).read(), filename, 'exec')
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
         exit(1)
