@@ -10,7 +10,7 @@ from Filter import *
 import AbstractCheck
 import rpm
 import re
-import commands
+import subprocess
 import Config
 
 desktop_re=re.compile('(services|applets)/.*\.desktop$')
@@ -25,7 +25,7 @@ class DesktopCheck(AbstractCheck.AbstractFilesCheck):
 
         try:
             f = open(pkg.dirName() + '/' + filename)
-        except Exception, e:
+        except Exception as e:
             printWarning(pkg, "read-error", e)
             return 0
 

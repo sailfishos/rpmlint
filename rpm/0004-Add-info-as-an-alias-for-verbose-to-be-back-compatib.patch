@@ -1,0 +1,27 @@
+From da6e2f791be92f217d459af25815bceed336d07b Mon Sep 17 00:00:00 2001
+From: David Greaves <david.greaves@jolla.com>
+Date: Wed, 18 Mar 2020 13:21:28 +0000
+Subject: [PATCH 4/7] Add --info as an alias for --verbose to be
+ back-compatible
+
+Signed-off-by: David Greaves <david.greaves@jolla.com>
+---
+ rpmlint/__init__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rpmlint/__init__.py b/rpmlint/__init__.py
+index e5c26a7..c094830 100644
+--- a/rpmlint/__init__.py
++++ b/rpmlint/__init__.py
+@@ -84,7 +84,7 @@ def process_lint_args(argv):
+     parser.add_argument('-c', '--config', type=Path, help='load up additional configuration data from specified path')
+     parser.add_argument('-e', '--explain', nargs='+', default='', help='provide detailed explanation for one specific message id')
+     parser.add_argument('-r', '--rpmlintrc', type=Path, help='load up specified rpmlintrc file')
+-    parser.add_argument('-V', '--verbose', action='store_true', help='provide detailed explanations where available')
++    parser.add_argument('-V', '--verbose', '--info', action='store_true', help='provide detailed explanations where available')
+     parser.add_argument('-p', '--print-config', action='store_true', help='print the settings that are in effect when using the rpmlint')
+     parser.add_argument('-i', '--installed', nargs='+', default='', help='installed packages to be validated by rpmlint')
+     parser.add_argument('-s', '--strict', action='store_true', help='treat all messages as errors')
+-- 
+2.20.1
+

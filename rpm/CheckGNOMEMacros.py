@@ -86,7 +86,7 @@ class GNOMECheck(AbstractCheck.AbstractCheck):
 
         ghosts = pkg.ghostFiles()
 
-        pkg_requires = set(map(lambda x: string.split(x[0],'(')[0], pkg.requires()))
+        pkg_requires = set([string.split(x[0],'(')[0] for x in pkg.requires()])
         postin = pkg[rpm.RPMTAG_POSTIN] or pkg[rpm.RPMTAG_POSTINPROG]
         postun = pkg[rpm.RPMTAG_POSTUN] or pkg[rpm.RPMTAG_POSTUNPROG]
         posttrans = pkg[rpm.RPMTAG_POSTTRANS] or pkg[rpm.RPMTAG_POSTTRANSPROG]

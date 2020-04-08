@@ -6,11 +6,10 @@
 # Purpose       : Verify shared library packaging policy rules
 #############################################################################
 
-from Filter import *
 import AbstractCheck
 import rpm
 import re
-import commands
+import subprocess
 import stat
 import Config
 import os
@@ -501,9 +500,9 @@ class LibraryPolicyCheck(AbstractCheck.AbstractCheck):
         libs_to_dir = dict()
         dirs = set()
         reqlibs = set()
-        pkg_requires = set(map(lambda x: string.split(x[0],'(')[0], pkg.requires()))
+        pkg_requires = set([string.split(x[0],'(')[0] for x in pkg.requires()])
 
-        for f in files.keys():
+        for f in list(files.keys()):
             if f.find('.so.') != -1 or f.endswith('.so'):
                 filename = pkg.dirName() + '/' + f
                 try:
@@ -614,7 +613,7 @@ class LibraryPolicyCheck(AbstractCheck.AbstractCheck):
                         cdirs.add(sysdir+'/'+ssdir)
                     done.add(dir)
             dirs = dirs.difference(done)
-        map(lambda dir: printError(pkg, 'shlib-policy-nonversioned-dir', dir), cdirs)
+        list(map(lambda dir: printError(pkg, 'shlib-policy-nonversioned-dir', dir), cdirs))
 
 check=LibraryPolicyCheck()
 

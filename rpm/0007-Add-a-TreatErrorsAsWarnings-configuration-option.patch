@@ -1,0 +1,32 @@
+From 14206363857dc8ba57af605de52b0244c4e22ad4 Mon Sep 17 00:00:00 2001
+From: David Greaves <david.greaves@jolla.com>
+Date: Mon, 23 Mar 2020 14:42:20 +0000
+Subject: [PATCH 7/7] Add a "TreatErrorsAsWarnings" configuration option
+
+Signed-off-by: David Greaves <david.greaves@jolla.com>
+---
+ rpmlint/lint.py | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/rpmlint/lint.py b/rpmlint/lint.py
+index 1ec2b20..d769a19 100644
+--- a/rpmlint/lint.py
++++ b/rpmlint/lint.py
+@@ -69,7 +69,13 @@ class Lint(object):
+             retcode = 64
+         msg = string_center('{} packages and {} specfiles checked; {} errors, {} warnings'.format(self.packages_checked, self.specfiles_checked, self.output.printed_messages['E'], self.output.printed_messages['W']), '=')
+         print(f'{quit_color}{msg}{Color.Reset}')
+-        return retcode
++        if not self.config.configuration['TreatErrorsAsWarnings']:
++            return retcode
++        else:
++            if retcode:
++                msg = string_center('TreatErrorsAsWarnings set in options so returning success instead of {}'.format(retcode), '=')
++                print(f'{quit_color}{msg}{Color.Reset}')
++            return 0
+ 
+     def _load_installed_rpms(self, packages):
+         existing_packages = []
+-- 
+2.20.1
+
