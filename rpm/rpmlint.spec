@@ -1,9 +1,10 @@
+# We don't want rpmlint-mini installed on the OBS so:
 #!BuildIgnore: rpmlint-mini
-%define python3_sitearch %(%{__python3} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")
 
 Name:           rpmlint
 BuildRequires:  rpm-python
-BuildRequires:  python3-pip
+BuildRequires:  python-rpm-macros
+BuildRequires:  python3-rpm-macros
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-toml
 BuildRequires:  python3-xdg
@@ -49,14 +50,13 @@ source packages can be checked.
 
 %build
 make %{?_smp_mflags}
+%py3_build
 
 %install
-
-# Use pip3 to install and not direct call to setuptools
-pip3 install --no-deps --root=$RPM_BUILD_ROOT --no-index .
+%py3_install
 
 # Install our checks
-pushd $RPM_BUILD_ROOT/%{python3_sitearch}/rpmlint/checks/
+pushd $RPM_BUILD_ROOT/%{python3_sitelib}/rpmlint/checks/
 cp %{SOURCE1} .
 cp %{SOURCE2} .
 cp %{SOURCE3} .
@@ -70,11 +70,11 @@ rm -rf  $RPM_BUILD_ROOT/%{_datadir}/man
 
 mkdir -p %{buildroot}/%{_sysconfdir}/xdg/rpmlint/
 # Install the configdefaults
-%__install -m 644 %{SOURCE50} %{buildroot}/%{python3_sitearch}/rpmlint/
+%__install -m 644 %{SOURCE50} %{buildroot}/%{python3_sitelib}/rpmlint/
 
 %files
 %defattr(-,root,root,0755)
 %doc COPYING README*
 %{_bindir}/*
 %dir %{_sysconfdir}/xdg/rpmlint/
-%{python3_sitearch}
+%{python3_sitelib}
