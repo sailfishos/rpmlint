@@ -19,7 +19,7 @@ Source4:        CheckAlternativesGhostFiles.py
 Source5:        CheckPolkitPrivs.py
 Source6:        LibraryPolicyCheck.py
 Source7:        CheckIconSizes.py
-Source50:       configdefaults.toml
+Source50:       rpmlint.config
 Url:            http://rpmlint.zarb.org/
 License:        GPLv2+
 Requires:       rpm-python, /usr/bin/readelf, file, findutils, cpio, bash
@@ -68,13 +68,15 @@ popd
 
 rm -rf  $RPM_BUILD_ROOT/%{_datadir}/man
 
-mkdir -p %{buildroot}/%{_sysconfdir}/xdg/rpmlint/
+mkdir -p %{buildroot}%{_sysconfdir}/xdg/rpmlint/
 # Install the configdefaults
-%__install -m 644 %{SOURCE50} %{buildroot}/%{python3_sitelib}/rpmlint/
+%__install -m 644 %{SOURCE50} %{buildroot}%{_sysconfdir}/xdg/rpmlint/config
 
 %files
 %defattr(-,root,root,0755)
-%doc COPYING README*
+%license COPYING
+%doc README*
 %{_bindir}/*
 %dir %{_sysconfdir}/xdg/rpmlint/
+%{_sysconfdir}/xdg/rpmlint/*
 %{python3_sitelib}
