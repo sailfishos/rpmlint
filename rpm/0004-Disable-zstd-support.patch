@@ -1,0 +1,70 @@
+@@ -0,0 +1,69 @@
+From 81da0ff61017f2a0e817f4b9a3a8ef4b9a52483c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@jolla.com>
+Date: Thu, 15 Oct 2020 17:30:42 +0300
+Subject: [PATCH 5/5] Disable zstd support.
+
+---
+ README.md      | 2 +-
+ rpmlint/pkg.py | 5 -----
+ setup.py       | 1 -
+ 3 files changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/README.md b/README.md
+index 6f01e29..7b4e6a2 100644
+--- a/README.md
++++ b/README.md
+@@ -28,7 +28,7 @@ Mandatory:
+ - Python 3.6 or newer
+ - python3-setuptools, python3-toml, python3-pyxdg, python3-beam
+ - rpm and its python bindings
+-- binutils, cpio, gzip, bzip, xz and zstd
++- binutils, cpio, gzip, bzip, xz
+ 
+ Optional, for running the test suite:
+ - devscripts
+diff --git a/rpmlint/pkg.py b/rpmlint/pkg.py
+index 1a91e25..9a983f4 100644
+--- a/rpmlint/pkg.py
++++ b/rpmlint/pkg.py
+@@ -22,7 +22,6 @@ except ImportError:
+ import rpm
+ from rpmlint.helpers import byte_to_string, ENGLISH_ENVIROMENT, print_warning
+ from rpmlint.pkgfile import PkgFile
+-import zstd
+ 
+ 
+ DepInfo = namedtuple('DepInfo', ('name', 'flags', 'version'))
+@@ -75,8 +74,6 @@ def catcmd(fname):
+         cat = 'bzip2 -dcf'
+     elif xz_regex.search(fname):
+         cat = 'xz -dc'
+-    elif zst_regex.search(fname):
+-        cat = 'zstd -dc'
+     return cat
+ 
+ 
+@@ -89,8 +86,6 @@ def compression_algorithm(fname):
+         return bz2
+     elif xz_regex.search(fname):
+         return lzma
+-    elif zst_regex.search(fname):
+-        return zstd
+     else:
+         return None
+ 
+diff --git a/setup.py b/setup.py
+index ebac54b..050912b 100755
+--- a/setup.py
++++ b/setup.py
+@@ -44,7 +44,6 @@ setup(
+         'pyxdg',
+         'rpm',
+         'toml',
+-        'zstd',
+         'importlib-metadata;python_version<"3.8"',
+     ],
+     # We don't run tests during the OBS build and these packages are deprecated
+-- 
+2.25.1
+

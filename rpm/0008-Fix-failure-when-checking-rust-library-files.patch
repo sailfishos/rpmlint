@@ -1,0 +1,35 @@
+From 794962632d85fa74306f1c5b01c2f629463c4bfa Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@jolla.com>
+Date: Wed, 16 Jun 2021 18:10:05 +0300
+Subject: [PATCH] Fix failure when checking rust library files
+
+These are seen as archives in run_elf_checks which returns before
+initializing readelf_parser.
+---
+ rpmlint/checks/BinariesCheck.py | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/rpmlint/checks/BinariesCheck.py b/rpmlint/checks/BinariesCheck.py
+index 3679880..0c65108 100644
+--- a/rpmlint/checks/BinariesCheck.py
++++ b/rpmlint/checks/BinariesCheck.py
+@@ -626,10 +626,13 @@ class BinariesCheck(AbstractCheck):
+             self.run_elf_checks(pkg, pkgfile.path, fname)
+ 
+             # inspect binary file
+-            is_shlib = self.readelf_parser.is_shlib
++            try:
++                is_shlib = self.readelf_parser.is_shlib
+ 
+-            if is_shlib:
+-                pkg_has_lib = True
++                if is_shlib:
++                    pkg_has_lib = True
++            except AttributeError:
++                pass
+ 
+             # skip non-exec and non-SO
+             # executables and shared objects only from here on
+-- 
+2.25.1
+

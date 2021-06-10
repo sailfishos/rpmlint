@@ -14,11 +14,10 @@ diff --git a/setup.py b/setup.py
 index 3e2ee1c..e186543 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -42,13 +42,15 @@ setup(
-         'pyxdg',
-         'toml',
+@@ -47,12 +47,14 @@ setup(
+         'zstd',
+         'importlib-metadata;python_version<"3.8"',
      ],
--    setup_requires=['pytest-runner'],
 -    tests_require=[
 -        'pytest',
 -        'pytest-cov',
@@ -27,7 +26,6 @@ index 3e2ee1c..e186543 100755
 -    ],
 +    # We don't run tests during the OBS build and these packages are deprecated
 +    # and have a long dependency chain
-+#    setup_requires=['pytest-runner'],
 +#    tests_require=[
 +#        'pytest',
 +#        'pytest-cov',
