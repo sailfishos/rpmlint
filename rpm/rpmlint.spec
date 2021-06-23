@@ -9,7 +9,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-toml
 BuildRequires:  python3-xdg
 Summary:        Rpm correctness checker
-Version:        1.12pre
+Version:        2.0.0
 Release:        1
 Source0:        %{name}-%{version}.tar.xz
 Source1:        CheckDBUSServices.py
@@ -19,7 +19,7 @@ Source4:        CheckAlternativesGhostFiles.py
 Source5:        CheckPolkitPrivs.py
 Source6:        LibraryPolicyCheck.py
 Source7:        CheckIconSizes.py
-Source50:       rpmlint.config
+Source50:       sailfish.toml
 Url:            http://rpmlint.zarb.org/
 License:        GPLv2+
 Requires:       rpm-python, /usr/bin/readelf, file, findutils, cpio, bash
@@ -35,11 +35,12 @@ BuildArch:      noarch
 #  git format-patch --base=master master..jolla/rpmlint-1.12pre -o ../rpm/
 Patch0:         0001-ZipCheck-Ignore-any-Exception-here.patch
 Patch1:         0002-We-don-t-run-tests-during-the-OBS-build.patch
-Patch2:         0003-Fix-rpmlintrc-user-specified-rpmlintrc-check.patch
-Patch3:         0004-Add-info-as-an-alias-for-verbose-to-be-back-compatib.patch
-Patch4:         0005-Use-v-for-verbose-and-V-for-version.patch
-Patch5:         0006-Say-what-config-files-are-causing-problems.patch
-Patch6:         0007-Add-a-TreatErrorsAsWarnings-configuration-option.patch
+Patch2:         0003-Add-a-TreatErrorsAsWarnings-configuration-option.patch
+Patch3:         0004-Disable-zstd-support.patch
+Patch4:         0005-Disable-Erlang-checks.patch
+Patch5:         0006-Remove-rpm-dependency.patch
+Patch6:         0007-Revert-Report-total-time-spent-in-linter.patch
+Patch7:         0008-Fix-failure-when-checking-rust-library-files.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and
@@ -49,7 +50,7 @@ source packages can be checked.
 %autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
-make %{?_smp_mflags}
+%make_build
 %py3_build
 
 %install
@@ -70,7 +71,7 @@ rm -rf  $RPM_BUILD_ROOT/%{_datadir}/man
 
 mkdir -p %{buildroot}%{_sysconfdir}/xdg/rpmlint/
 # Install the configdefaults
-%__install -m 644 %{SOURCE50} %{buildroot}%{_sysconfdir}/xdg/rpmlint/config
+%__install -m 644 %{SOURCE50} %{buildroot}%{_sysconfdir}/xdg/rpmlint/
 
 %files
 %defattr(-,root,root,0755)

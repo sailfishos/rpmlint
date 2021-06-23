@@ -1,0 +1,39 @@
+From 84b48207e0feae46d34c8dc9982518875de06682 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@jolla.com>
+Date: Thu, 10 Jun 2021 19:35:16 +0300
+Subject: [PATCH] Disable Erlang checks.
+
+Not needed and requirement not available.
+---
+ rpmlint/configdefaults.toml | 2 +-
+ setup.py                    | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/rpmlint/configdefaults.toml b/rpmlint/configdefaults.toml
+index 5cfdb6f..5450f74 100644
+--- a/rpmlint/configdefaults.toml
++++ b/rpmlint/configdefaults.toml
+@@ -9,7 +9,7 @@ Checks = [
+     "DBusPolicyCheck",
+     'DuplicatesCheck',
+     "DocCheck",
+-    "ErlangCheck",
++#    "ErlangCheck",
+     "FHSCheck",
+     "FilesCheck",
+     "IconSizesCheck",
+diff --git a/setup.py b/setup.py
+index 0f76815..1cf189c 100755
+--- a/setup.py
++++ b/setup.py
+@@ -40,7 +40,6 @@ setup(
+     keywords=['RPM', '.spec', 'validator'],
+ 
+     install_requires=[
+-        'pybeam',
+         'pyxdg',
+         'rpm',
+         'toml',
+-- 
+2.25.1
+

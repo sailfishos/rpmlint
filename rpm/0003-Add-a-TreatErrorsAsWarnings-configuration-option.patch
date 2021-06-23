@@ -12,10 +12,10 @@ diff --git a/rpmlint/lint.py b/rpmlint/lint.py
 index 1ec2b20..d769a19 100644
 --- a/rpmlint/lint.py
 +++ b/rpmlint/lint.py
-@@ -69,7 +69,13 @@ class Lint(object):
-             retcode = 64
-         msg = string_center('{} packages and {} specfiles checked; {} errors, {} warnings'.format(self.packages_checked, self.specfiles_checked, self.output.printed_messages['E'], self.output.printed_messages['W']), '=')
+@@ -93,7 +93,13 @@ class Lint(object):
+                             f'{self.output.score} badness; has taken {duration:.1f} s', '=')
          print(f'{quit_color}{msg}{Color.Reset}')
+ 
 -        return retcode
 +        if not self.config.configuration['TreatErrorsAsWarnings']:
 +            return retcode
@@ -25,8 +25,8 @@ index 1ec2b20..d769a19 100644
 +                print(f'{quit_color}{msg}{Color.Reset}')
 +            return 0
  
-     def _load_installed_rpms(self, packages):
-         existing_packages = []
+     def run(self):
+         try:
 -- 
 2.20.1
 

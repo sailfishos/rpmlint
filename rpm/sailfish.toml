@@ -454,6 +454,7 @@ ValidLicenses = [
     'Freely redistributable without restriction',
     # Sailfish
     'Proprietary',
+    'Jolla Proprietary',
 ]
 
 # Don't exit with an error code
