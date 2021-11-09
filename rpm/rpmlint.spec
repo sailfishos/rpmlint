@@ -22,7 +22,7 @@ Source7:        CheckIconSizes.py
 Source50:       sailfish.toml
 Url:            http://rpmlint.zarb.org/
 License:        GPLv2+
-Requires:       rpm-python, /usr/bin/readelf, file, findutils, cpio, bash
+Requires:       rpm-python, /usr/bin/readelf, file, findutils, gnu-cpio, bash
 Requires:       desktop-file-utils
 Requires:       python3-magic
 Requires:       python3-toml
