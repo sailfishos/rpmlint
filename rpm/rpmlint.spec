@@ -8,6 +8,7 @@ BuildRequires:  python3-rpm-macros
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-toml
 BuildRequires:  python3-xdg
+BuildRequires:  python3-zstd
 Summary:        Rpm correctness checker
 Version:        2.0.0
 Release:        1
@@ -28,6 +29,7 @@ Requires:       python3-magic
 Requires:       python3-toml
 Requires:       python3-xdg
 Requires:       python3-setuptools
+Requires:       python3-zstd
 BuildArch:      noarch
 # Apply patches to upstream and then in ./upstream use:
 #  git format-patch --base=<upstream-tag> <upstream-tag>..<sfos/tag> -o ../rpm/
@@ -36,7 +38,6 @@ BuildArch:      noarch
 Patch0:         0001-ZipCheck-Ignore-any-Exception-here.patch
 Patch1:         0002-We-don-t-run-tests-during-the-OBS-build.patch
 Patch2:         0003-Add-a-TreatErrorsAsWarnings-configuration-option.patch
-Patch3:         0004-Disable-zstd-support.patch
 Patch4:         0005-Disable-Erlang-checks.patch
 Patch5:         0006-Remove-rpm-dependency.patch
 Patch6:         0007-Revert-Report-total-time-spent-in-linter.patch
