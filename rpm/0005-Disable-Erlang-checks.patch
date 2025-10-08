@@ -5,35 +5,44 @@ Subject: [PATCH] Disable Erlang checks.
 
 Not needed and requirement not available.
 ---
- rpmlint/configdefaults.toml | 2 +-
- setup.py                    | 1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ pyproject.toml              | 1 -
+ rpmlint/configdefaults.toml | 1 -
+ test/test_lint.py           | 1 -
+ 3 files changed, 3 deletions(-)
 
+diff --git a/pyproject.toml b/pyproject.toml
+index 8fbd3b0f..91f07a66 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -35,7 +35,6 @@ classifiers = [
+ ]
+ keywords = ["RPM", ".spec", "validator"]
+ dependencies = [
+-    "pybeam",
+     "pyxdg",
+     "rpm",
+     "tomli;python_version<'3.11'",
 diff --git a/rpmlint/configdefaults.toml b/rpmlint/configdefaults.toml
-index 5cfdb6f..5450f74 100644
+index a24295da..02abc2ad 100644
 --- a/rpmlint/configdefaults.toml
 +++ b/rpmlint/configdefaults.toml
-@@ -9,7 +9,7 @@ Checks = [
+@@ -8,7 +8,6 @@ Checks = [
      "DBusPolicyCheck",
      'DuplicatesCheck',
      "DocCheck",
 -    "ErlangCheck",
-+#    "ErlangCheck",
      "FHSCheck",
      "FilesCheck",
      "IconSizesCheck",
-diff --git a/setup.py b/setup.py
-index 0f76815..1cf189c 100755
---- a/setup.py
-+++ b/setup.py
-@@ -40,7 +40,6 @@ setup(
-     keywords=['RPM', '.spec', 'validator'],
- 
-     install_requires=[
--        'pybeam',
-         'pyxdg',
-         'rpm',
-         'toml',
--- 
-2.25.1
-
+diff --git a/test/test_lint.py b/test/test_lint.py
+index 202245cd..21bcca43 100644
+--- a/test/test_lint.py
++++ b/test/test_lint.py
+@@ -36,7 +36,6 @@ basic_tests = [
+     'DBusPolicyCheck',
+     'DuplicatesCheck',
+     'DocCheck',
+-    'ErlangCheck',
+     'FHSCheck',
+     'FilesCheck',
+     'IconSizesCheck',

@@ -10,11 +10,11 @@ initializing readelf_parser.
  1 file changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/rpmlint/checks/BinariesCheck.py b/rpmlint/checks/BinariesCheck.py
-index 3679880..0c65108 100644
+index 8579256e..ab1e237c 100644
 --- a/rpmlint/checks/BinariesCheck.py
 +++ b/rpmlint/checks/BinariesCheck.py
-@@ -626,10 +626,13 @@ class BinariesCheck(AbstractCheck):
-             self.run_elf_checks(pkg, pkgfile.path, fname)
+@@ -701,10 +701,13 @@ class BinariesCheck(AbstractCheck):
+                 continue
  
              # inspect binary file
 -            is_shlib = self.readelf_parser.is_shlib
@@ -30,6 +30,3 @@ index 3679880..0c65108 100644
  
              # skip non-exec and non-SO
              # executables and shared objects only from here on
--- 
-2.25.1
-

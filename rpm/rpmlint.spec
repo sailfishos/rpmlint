@@ -10,7 +10,7 @@ BuildRequires:  python3-toml
 BuildRequires:  python3-xdg
 BuildRequires:  python3-zstd
 Summary:        Rpm correctness checker
-Version:        2.0.0
+Version:        2.5.0
 Release:        1
 Source0:        %{name}-%{version}.tar.xz
 Source1:        CheckDBUSServices.py
@@ -42,6 +42,7 @@ Patch4:         0005-Disable-Erlang-checks.patch
 Patch5:         0006-Remove-rpm-dependency.patch
 Patch6:         0007-Revert-Report-total-time-spent-in-linter.patch
 Patch7:         0008-Fix-failure-when-checking-rust-library-files.patch
+Patch8:         0009-Remove-enchant-dependency.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and

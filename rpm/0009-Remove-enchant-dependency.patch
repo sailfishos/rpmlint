@@ -1,0 +1,27 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Matti Viljanen <matti.viljanen@jolla.com>
+Date: Thu, 9 Oct 2025 00:58:02 +0300
+Subject: [PATCH] Remove enchant dependency
+
+---
+ pyproject.toml | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 3b88d99a..32cadcd0 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -44,6 +44,13 @@ dependencies = [
+     "packaging"
+ ]
+ 
++[project.optional-dependencies]
++test = [
++    "pytest",
++    "pytest-cov",
++    "pytest-xdist"
++]
++
+ [project.scripts]
+ rpmdiff = "rpmlint.cli:diff"
+ rpmlint = "rpmlint.cli:lint"

@@ -5,14 +5,14 @@ Subject: [PATCH] Revert "Report total time spent in linter."
 
 This reverts commit d0e8d80427e8afaa639a73730c7a8b975acf2776.
 ---
- rpmlint/lint.py | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ rpmlint/lint.py | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/rpmlint/lint.py b/rpmlint/lint.py
-index 1b16e23..5fa4d8a 100644
+index 087c2384..3d1fe0d4 100644
 --- a/rpmlint/lint.py
 +++ b/rpmlint/lint.py
-@@ -53,7 +53,6 @@ class Lint(object):
+@@ -57,7 +57,6 @@ class Lint:
              self.load_checks()
  
      def _run(self):
@@ -20,18 +20,18 @@ index 1b16e23..5fa4d8a 100644
          retcode = 0
          # if we just want to print config, do so and leave
          if self.options['print_config']:
-@@ -87,10 +86,7 @@ class Lint(object):
+@@ -92,13 +91,12 @@ class Lint:
  
          self._maybe_print_reports()
  
 -        duration = time.monotonic() - start
--        msg = string_center(f'{self.packages_checked} packages and {self.specfiles_checked} specfiles checked; '
--                            f'{self.output.printed_messages["E"]} errors, {self.output.printed_messages["W"]} warnings, '
+         error_messages = self.output.printed_messages['E']
+         warning_messages = self.output.printed_messages['W']
+         msg = string_center(f'{self.packages_checked} packages and {self.specfiles_checked} specfiles checked; '
+                             f'{error_messages} errors, {warning_messages} warnings'
+                             f', {self.output.filtered_out} filtered, '
 -                            f'{self.output.score} badness; has taken {duration:.1f} s', '=')
-+        msg = string_center('{} packages and {} specfiles checked; {} errors, {} warnings, {} badness'.format(self.packages_checked, self.specfiles_checked, self.output.printed_messages['E'], self.output.printed_messages['W'], self.output.score), '=')
++                            f'{self.output.score} badness', '=')
          print(f'{quit_color}{msg}{Color.Reset}')
  
          if not self.config.configuration['TreatErrorsAsWarnings']:
--- 
-2.25.1
-
