@@ -1,0 +1,26 @@
+From ea139a314071b7765fba6fa6ee3c78299e8a519a Mon Sep 17 00:00:00 2001
+From: Todd Zullinger <tmz@pobox.com>
+Date: Thu, 25 May 2023 13:12:12 -0400
+Subject: [PATCH] DocCheck: adjust for rpm-4.19.0 API changes
+
+Apparently, using `dsFromHeader()` has been deprecated for a long time.
+Using `rpm.ds()` is the preferred method.  It has been available for ~10
+years, according to rpm commit 8d32255ff (Drop hdr.dsFromHeader() and
+hdr.dsOfHeader() methods, 2022-04-08).
+---
+ rpmlint/checks/DocCheck.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rpmlint/checks/DocCheck.py b/rpmlint/checks/DocCheck.py
+index 567ca3b0..d9600ea1 100644
+--- a/rpmlint/checks/DocCheck.py
++++ b/rpmlint/checks/DocCheck.py
+@@ -60,7 +60,7 @@ class DocCheck(AbstractCheck):
+         core_reqs = {}  # dependencies of non-doc files
+         doc_reqs = {}   # dependencies of doc files
+ 
+-        for dep in pkg.header.dsFromHeader():
++        for dep in rpm.ds(pkg.header, 'requires'):
+             # skip deps which were found by find-requires
+             if dep.Flags() & rpm.RPMSENSE_FIND_REQUIRES != 0:
+                 continue

@@ -42,6 +42,7 @@ Patch4:         0005-Disable-Erlang-checks.patch
 Patch5:         0006-Remove-rpm-dependency.patch
 Patch6:         0007-Revert-Report-total-time-spent-in-linter.patch
 Patch7:         0008-Fix-failure-when-checking-rust-library-files.patch
+Patch8:         0009-DocCheck-adjust-for-rpm-4.19.0-API-changes.patch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages. Binary and
